@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio | WaterStats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="icon" type="image/png" href="imagenes/logo.png">
   <script src="js/menu.js" defer></script>
@@ -33,10 +36,19 @@
           </details>
         </li>
         <li><a href="recursos.html">Video y guía</a></li>
+        <li><a href="index.html#contacto" class="nav-contacto">Contáctanos</a></li>
       </ul>
     </nav>
   </div>
 </header>
+<div class="barra-accesibilidad" role="region" aria-label="Accesibilidad adaptativa">
+  <div class="contenedor a11y-controles">
+    <span class="a11y-titulo">Accesibilidad visual:</span>
+    <button type="button" id="btn-texto-normal" class="boton-a11y activo" aria-pressed="true">A Normal</button>
+    <button type="button" id="btn-texto-grande" class="boton-a11y" aria-pressed="false">A+ Texto grande</button>
+    <button type="button" id="btn-alto-contraste" class="boton-a11y" aria-pressed="false">◐ Alto contraste</button>
+  </div>
+</div>
 <main id="contenido">
   <!-- HERO CON IMAGEN QUE SE DESVANECE Y ESLOGAN QUE SE ADAPTA -->
   <section id="inicio" class="hero">
@@ -88,19 +100,85 @@
   </section>
   
   <section id="orientador" class="seccion fondo"><div class="contenedor">
-    <p class="etiqueta">Herramientas y participación</p><h2>¿Qué deseas explorar?</h2><p>Elige una opción para conocer más sobre nuestras herramientas digitales y proyectos comunitarios.</p>
-    <fieldset class="orientador"><legend>Iniciativas ODS 6</legend>
-      <input type="radio" name="objeto" id="mochila" checked><label for="mochila">Mapeo Comunitario</label>
-      <input type="radio" name="objeto" id="libreta"><label for="libreta">Huella Hídrica</label>
-      <input type="radio" name="objeto" id="abrigo"><label for="abrigo">Talleres</label>
-      <div class="resultados">
-        <div class="respuesta mochila"><p class="etiqueta">Proyecto ODS 6</p><h3>Mapeo Comunitario de Agua</h3><p>Plataforma interactiva para ubicar, verificar y reportar fuentes de agua potable cercanas en tiempo real para empoderar a tu comunidad.</p></div>
-        <div class="respuesta libreta"><p class="etiqueta">Proyecto ODS 6</p><h3>Calculadora de Huella Hídrica</h3><p>Herramienta digital para medir tu consumo personal de agua y recibir recomendaciones de ahorro en el hogar.</p></div>
-        <div class="respuesta abrigo"><p class="etiqueta">Proyecto ODS 6</p><h3>Talleres de concientización</h3><p>Capacitaciones sobre el uso responsable del agua y saneamiento en comunidades vulnerables.</p></div>
-        <a class="boton" href="#contacto">Quiero participar</a>
+    <p class="etiqueta">Herramientas y participación · Filas 3 y 6</p>
+    <h2>Explorador Dinámico de Iniciativas y Plan de Ahorro IA</h2>
+    <p>Busca puntos comunitarios por distrito o tipo usando texto o comandos de voz, y genera un plan personalizado de ahorro hídrico.</p>
+
+    <!-- Buscador y filtros dinámicos con comandos de voz (Fila 6) -->
+    <div class="asistente-ia-caja" aria-labelledby="titulo-buscador-iniciativas">
+      <div class="ia-cabecera">
+        <span class="ia-badge">Mapa e Iniciativas · Búsqueda por Voz y Filtros</span>
+        <h3 id="titulo-buscador-iniciativas">Filtrar iniciativas y puntos de agua por distrito o categoría</h3>
       </div>
-    </fieldset>
-    <p class="nota">Selecciona una de nuestras iniciativas principales. Contribuye al cuidado del agua y al cumplimiento del ODS 6.</p>
+      <div class="ia-controles-entrada">
+        <input type="text" id="buscador-iniciativas" placeholder="Ej. San Miguel, pilón, talleres, huella..." aria-label="Buscar iniciativas por distrito o palabra clave">
+        <select id="filtro-tipo-iniciativa" aria-label="Filtrar por tipo de iniciativa">
+          <option value="todos">Todos los tipos</option>
+          <option value="mapeo">Mapeo Comunitario</option>
+          <option value="huella">Huella Hídrica</option>
+          <option value="talleres">Talleres</option>
+        </select>
+        <button type="button" id="btn-voz-iniciativas" class="boton-secundario" title="Ejemplo: Mostrar iniciativas en San Miguel">🎤 Comando de voz</button>
+        <button type="button" id="btn-limpiar-iniciativas" class="boton-mini secundario">Restablecer</button>
+      </div>
+      <p id="feedback-voz-iniciativas" class="ia-criterio">Mostrando 4 puntos e iniciativas comunitarias activas en Lima.</p>
+
+      <div id="lista-iniciativas-dinamicas" class="tarjetas" style="margin-top: 1rem;">
+        <article class="tarjeta item-iniciativa" data-tipo="mapeo" data-texto="mapeo comunitario san miguel pilon agua potable parque media luna">
+          <span class="etiqueta-contexto">Mapeo Comunitario · San Miguel</span>
+          <h3>Punto Solidario Parque Media Luna</h3>
+          <p>Estación comunitaria verificada para recarga de agua potable gratuita en caso de cortes.</p>
+          <a href="#comunidad-reportes">Reportar estado o comentar</a>
+        </article>
+        <article class="tarjeta item-iniciativa" data-tipo="huella" data-texto="huella hidrica calculadora hogar consumo familiar lima">
+          <span class="etiqueta-contexto">Huella Hídrica · Digital</span>
+          <h3>Calculadora de Huella Hídrica</h3>
+          <p>Estima tu consumo diario en litros y recibe metas semanales verificables.</p>
+          <a href="#plan-ahorro-ia">Generar plan abajo</a>
+        </article>
+        <article class="tarjeta item-iniciativa" data-tipo="talleres" data-texto="talleres concientizacion san miguel pueblo libre escuelas ahorro">
+          <span class="etiqueta-contexto">Talleres · San Miguel / Pueblo Libre</span>
+          <h3>Talleres Vecinales ODS 6</h3>
+          <p>Sesiones prácticas sobre detección de fugas y reutilización de aguas grises en el hogar.</p>
+          <a href="#contacto">Inscribirse</a>
+        </article>
+        <article class="tarjeta item-iniciativa" data-tipo="mapeo" data-texto="mapeo comunitario villa el salvador cisterna tanque comunitario">
+          <span class="etiqueta-contexto">Mapeo Comunitario · Villa El Salvador</span>
+          <h3>Tanque Comunitario Sector 2</h3>
+          <p>Punto de abastecimiento vecinal monitoreado con alertas de disponibilidad.</p>
+          <a href="#comunidad-reportes">Reportar estado o comentar</a>
+        </article>
+      </div>
+    </div>
+
+    <!-- Generador de Plan Personalizado de Ahorro de Agua (Fila 3) -->
+    <div id="plan-ahorro-ia" class="asistente-ia-caja" aria-labelledby="titulo-plan-ia">
+      <div class="ia-cabecera">
+        <span class="ia-badge">Generador IA · Plan de Ahorro Personalizado</span>
+        <h3 id="titulo-plan-ia">Crea tu plan de ahorro según tu hogar</h3>
+      </div>
+      <div class="ia-controles-entrada">
+        <select id="perfil-hogar" aria-label="Tipo de vivienda o perfil">
+          <option value="individual">Vivo solo / Estudiante</option>
+          <option value="familia">Familia (3 a 5 personas)</option>
+          <option value="jardin">Hogar con jardín o patio</option>
+        </select>
+        <select id="prioridad-ahorro" aria-label="Área donde deseas ahorrar más agua">
+          <option value="bano">Enfoque: Baño y ducha</option>
+          <option value="cocina">Enfoque: Cocina y lavado</option>
+          <option value="fugas">Enfoque: Prevención de fugas</option>
+        </select>
+        <button type="button" id="btn-generar-plan" class="boton">Generar plan IA</button>
+      </div>
+      <div id="resultado-plan-ia" class="ia-resultado" hidden>
+        <p id="texto-plan-ia"></p>
+        <p id="criterio-plan-ia" class="ia-criterio"></p>
+        <div class="ia-acciones">
+          <button type="button" id="btn-leer-plan" class="boton-mini secundario">🔊 Escuchar plan (Voz)</button>
+          <button type="button" id="btn-cerrar-plan" class="boton-mini secundario">Ocultar plan</button>
+        </div>
+      </div>
+    </div>
   </div></section>
   
   <section id="proyectos" class="seccion contenedor"><p class="etiqueta">Iniciativas actuales</p><h2>Nuestros Proyectos ODS 6.</h2><div class="tarjetas"><article class="tarjeta"><h3>Mapeo Comunitario</h3><p>Plataforma interactiva para ubicar, verificar y reportar fuentes de agua potable en tiempo real.</p></article><article class="tarjeta"><h3>Calculadora Hídrica</h3><p>Medimos tu impacto hídrico y te damos pasos clave para reducir tu consumo diario.</p></article><article class="tarjeta"><h3>Talleres</h3><p>Educamos y concientizamos sobre el cuidado vital del agua y el saneamiento.</p></article></div></section>
@@ -109,8 +187,113 @@
   
   <section id="testimonios" class="seccion contenedor"><blockquote>"El acceso al agua limpia y al saneamiento es un derecho humano fundamental. Calcular y reducir nuestra huella hídrica es el primer paso para preservar este recurso vital."</blockquote><p>— Red de la Huella Hídrica</p></section>
   
+  <!-- MÓDULO DE PARTICIPACIÓN ACTIVA, COMENTARIOS Y REPORTES COMUNITARIOS (Fila 2) -->
+  <section id="comunidad-reportes" class="seccion contenedor">
+    <p class="etiqueta">Participación ciudadana · Fila 2</p>
+    <h2>Reportes Comunitarios y Comentarios en Tiempo Real</h2>
+    <p>Comparte incidencias (fugas, cortes de agua o puntos solidarios activos) mediante texto, dictado por voz o adjuntando una fotografía para análisis preliminar.</p>
+
+    <div class="dos-columnas" style="align-items: start;">
+      <form id="form-reporte-comunitario" class="formulario">
+        <label for="autor-reporte">Tu nombre o distrito</label>
+        <input type="text" id="autor-reporte" required maxlength="50" placeholder="Ej. Carlos — San Miguel">
+
+        <label for="tipo-reporte">Tipo de aporte</label>
+        <select id="tipo-reporte" required>
+          <option value="Fuga de agua">Reporte de fuga de agua</option>
+          <option value="Zona sin agua">Alerta de zona sin suministro</option>
+          <option value="Punto solidario activo">Confirmación de punto solidario activo</option>
+          <option value="Comentario vecinal">Comentario / Sugerencia comunitaria</option>
+        </select>
+
+        <label for="texto-reporte">Detalle del reporte o comentario</label>
+        <div class="ia-controles-entrada" style="margin-top: 0;">
+          <textarea id="texto-reporte" rows="3" required minlength="6" maxlength="240" placeholder="Describe la ubicación o situación..."></textarea>
+          <button type="button" id="btn-voz-reporte" class="boton-secundario">🎤 Dictar reporte</button>
+        </div>
+
+        <label for="imagen-reporte">Adjuntar fotografía (opcional — análisis visual preliminar)</label>
+        <input type="file" id="imagen-reporte" accept="image/*">
+        <div id="analisis-imagen-preview" class="ia-resultado" hidden>
+          <img id="preview-foto-reporte" alt="Vista previa de incidencia reportada" style="max-height: 160px; border-radius: .4rem; margin-bottom: .5rem;">
+          <p id="texto-analisis-imagen" class="ia-criterio"></p>
+        </div>
+
+        <button type="submit" class="boton">Publicar reporte en la comunidad</button>
+      </form>
+
+      <div class="pila" id="muro-reportes-lista" aria-live="polite">
+        <article class="tarjeta destacada">
+          <span class="etiqueta-contexto">Punto solidario activo · Hace 2 h</span>
+          <h3>Valeria — San Miguel</h3>
+          <p>El pilón cercano al Parque Media Luna está operativo y con buena presión para recarga de bidones.</p>
+        </article>
+        <article class="tarjeta">
+          <span class="etiqueta-contexto">Reporte de fuga de agua · Hace 5 h</span>
+          <h3>Jorge — Pueblo Libre</h3>
+          <p>Se reportó filtración en tubería matriz de Av. Bolívar; ya se notificó a la cuadrilla municipal.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCUESTA RÁPIDA EMBEBIDA SIN FRICCIÓN DE QR EXTERNO (Fila 5) -->
+  <section id="feedback-rapido" class="seccion contenedor">
+    <div class="asistente-ia-caja" aria-labelledby="titulo-feedback-nativo">
+      <div class="ia-cabecera">
+        <span class="ia-badge">Feedback Directo · Sin salir de la web (Fila 5)</span>
+        <h3 id="titulo-feedback-nativo">¿Qué te pareció esta experiencia web sobre el ODS 6?</h3>
+      </div>
+      <p class="nota">Califica con un clic y, si deseas, deja una opinión rápida por voz o texto sin necesidad de escanear códigos QR externos.</p>
+
+      <div class="estrellas-grupo" role="radiogroup" aria-label="Calificación del 1 al 5">
+        <button type="button" class="estrella-btn" data-valor="1" aria-label="1 estrella">★ 1</button>
+        <button type="button" class="estrella-btn" data-valor="2" aria-label="2 estrellas">★ 2</button>
+        <button type="button" class="estrella-btn" data-valor="3" aria-label="3 estrellas">★ 3</button>
+        <button type="button" class="estrella-btn" data-valor="4" aria-label="4 estrellas">★ 4</button>
+        <button type="button" class="estrella-btn" data-valor="5" aria-label="5 estrellas">★ 5</button>
+      </div>
+
+      <div class="ia-controles-entrada">
+        <input type="text" id="comentario-feedback" placeholder="Comentario opcional (ej. Muy clara la lectura y los filtros)..." aria-label="Comentario opcional de satisfacción">
+        <button type="button" id="btn-voz-feedback" class="boton-secundario">🎤 Opinar por voz</button>
+        <button type="button" id="btn-enviar-feedback" class="boton">Enviar valoración</button>
+      </div>
+      <p id="confirmacion-feedback" class="ia-criterio" style="margin-top: .6rem;"></p>
+    </div>
+  </section>
+
   <section id="contacto" class="seccion fondo"><div class="contenedor dos-columnas">
-    <div><p class="etiqueta">Participa con nosotros</p><h2>Contáctanos.</h2><p>Déjanos tus datos para enviarte más información sobre el cuidado del agua, sumarte a nuestros talleres o participar en el mapeo comunitario.</p><p class="nota">Cada gota cuenta. Únete a WaterStats para proteger este recurso vital.</p></div>
+    <div>
+      <p class="etiqueta">Participa con nosotros</p>
+      <h2>Contáctanos directamente.</h2>
+      <p>Déjanos tus datos para enviarte información sobre el cuidado del agua, sumarte a nuestros talleres o participar en el mapeo comunitario.</p>
+      <div class="canales-directos" aria-label="Canales de contacto directo">
+        <p><strong>Correo oficial:</strong> <a href="mailto:WaterStats@water.com">WaterStats@water.com</a></p>
+        <p><strong>Teléfono / WhatsApp:</strong> <a href="tel:+51987654321">+51 987 654 321</a></p>
+        <p><strong>Horario de atención:</strong> Lunes a viernes, 9:00 a. m. – 6:00 p. m.</p>
+      </div>
+      <div class="asistente-ia-caja" aria-labelledby="titulo-asistente-contacto">
+        <div class="ia-cabecera">
+          <span class="ia-badge">Asistente IA · Orientación</span>
+          <h3 id="titulo-asistente-contacto">¿No sabes qué opción elegir?</h3>
+        </div>
+        <p class="nota">Describe tu duda o usa tu voz. La IA sugerirá el motivo de contacto adecuado para prellenar el formulario (tú decides si enviarlo).</p>
+        <div class="ia-controles-entrada">
+          <input type="text" id="consulta-ia-contacto" placeholder="Ej. Quiero reportar un pilón de agua en mi barrio..." aria-label="Escribe tu consulta para el asistente">
+          <button type="button" id="btn-voz-contacto" class="boton-secundario" aria-label="Dictar consulta por voz" title="Dictar por voz">🎤 Voz</button>
+          <button type="button" id="btn-analizar-contacto" class="boton">Sugerir</button>
+        </div>
+        <div id="respuesta-ia-contacto" class="ia-resultado" hidden>
+          <p id="texto-ia-contacto"></p>
+          <p class="ia-criterio" id="criterio-ia-contacto"></p>
+          <div class="ia-acciones">
+            <button type="button" id="btn-aplicar-ia" class="boton-mini">Aplicar al formulario</button>
+            <button type="button" id="btn-descartar-ia" class="boton-mini secundario">Descartar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <form action="confirmacion.html" method="get" class="formulario">
       <label for="nombre">Nombre completo</label><input id="nombre" name="nombre" type="text" required maxlength="60" placeholder="Ejemplo: Ana" autocomplete="off">
       <label for="correo">Correo electrónico</label><input id="correo" name="correo" type="email" required placeholder="ana@example.com" autocomplete="off">
@@ -133,5 +316,6 @@
     <p>© 2026 WaterStats · <a href="FUENTES.txt">Créditos de recursos</a></p>
   </div>
 </footer>
+  <script src="js/asistente.js" defer></script>
 </body>
 </html>

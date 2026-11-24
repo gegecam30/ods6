@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video y guía | WaterStats</title>
   <link rel="icon" type="image/png" href="imagenes/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
   <script src="js/menu.js" defer></script>
 </head>
@@ -38,11 +41,20 @@
           </details>
         </li>
         <li><a href="recursos.html" aria-current="page">Video y guía</a></li>
+        <li><a href="index.html#contacto" class="nav-contacto">Contáctanos</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<div class="barra-accesibilidad" role="region" aria-label="Accesibilidad adaptativa">
+  <div class="contenedor a11y-controles">
+    <span class="a11y-titulo">Accesibilidad visual:</span>
+    <button type="button" id="btn-texto-normal" class="boton-a11y activo" aria-pressed="true">A Normal</button>
+    <button type="button" id="btn-texto-grande" class="boton-a11y" aria-pressed="false">A+ Texto grande</button>
+    <button type="button" id="btn-alto-contraste" class="boton-a11y" aria-pressed="false">◐ Alto contraste</button>
+  </div>
+</div>
 <main id="contenido" class="contenedor seccion">
 
   <!-- SECCIÓN DE VIDEO -->
@@ -67,8 +79,26 @@
     <h2>Guía Práctica: 4 Pasos para el Ahorro de Agua en Casa</h2>
     <p>Aplica estas sencillas medidas en tu rutina diaria para contribuir directamente con los objetivos del ODS 6:</p>
 
+    <div class="asistente-ia-caja" aria-labelledby="titulo-recomendador-guia">
+      <div class="ia-cabecera">
+        <span class="ia-badge">Recomendador IA · Multimodal (Texto + Audio)</span>
+        <h3 id="titulo-recomendador-guia">Personaliza y escucha los consejos según tu contexto</h3>
+      </div>
+      <p class="nota">Selecciona tu contexto para priorizar recomendaciones o escúchalas en voz alta mientras realizas actividades en casa. Puedes volver a ver todos los pasos en cualquier momento.</p>
+      <div class="ia-filtros-guia" role="group" aria-label="Filtrar recomendaciones por contexto">
+        <button type="button" class="boton-mini filtro-guia activo" data-contexto="todos">Ver todos (4 pasos)</button>
+        <button type="button" class="boton-mini filtro-guia" data-contexto="individual">Uso individual</button>
+        <button type="button" class="boton-mini filtro-guia" data-contexto="familiar">Hogar y familia</button>
+        <button type="button" id="btn-leer-guia" class="boton-mini secundario">🔊 Escuchar guía</button>
+        <button type="button" id="btn-detener-guia" class="boton-mini secundario" hidden>⏹ Detener audio</button>
+      </div>
+      <p id="estado-guia-ia" class="ia-criterio">Mostrando todos los consejos verificados de la guía ODS 6.</p>
+    </div>
+
     <div class="tarjetas-guia">
-      <article class="tarjeta">
+      <article class="tarjeta tarjeta-guia" data-contexto="familiar">
+        <span class="etiqueta-contexto">Hogar y familia</span>
+        <button type="button" class="boton-mini secundario btn-leer-tarjeta" style="float:right; padding:.25rem .6rem; font-size:.8rem;" aria-label="Escuchar paso 1">🔊 Oír</button>
         <h3>1. Inspección y Reparación</h3>
         <ol class="lista-pasos">
           <li>Revisa periódicamente grifos, llaves y tuberías de la casa.</li>
@@ -77,7 +107,9 @@
         </ol>
       </article>
 
-      <article class="tarjeta">
+      <article class="tarjeta tarjeta-guia" data-contexto="individual">
+        <span class="etiqueta-contexto">Uso individual</span>
+        <button type="button" class="boton-mini secundario btn-leer-tarjeta" style="float:right; padding:.25rem .6rem; font-size:.8rem;" aria-label="Escuchar paso 2">🔊 Oír</button>
         <h3>2. Uso Eficiente en el Baño</h3>
         <ol class="lista-pasos">
           <li>Cierra el grifo mientras te cepillas los dientes o te enjabonas las manos.</li>
@@ -86,7 +118,9 @@
         </ol>
       </article>
 
-      <article class="tarjeta">
+      <article class="tarjeta tarjeta-guia" data-contexto="familiar">
+        <span class="etiqueta-contexto">Hogar y familia</span>
+        <button type="button" class="boton-mini secundario btn-leer-tarjeta" style="float:right; padding:.25rem .6rem; font-size:.8rem;" aria-label="Escuchar paso 3">🔊 Oír</button>
         <h3>3. Ahorro en la Cocina y Lavado</h3>
         <ol class="lista-pasos">
           <li>Lava las frutas y verduras en un recipiente en lugar de dejar el agua corriendo.</li>
@@ -95,7 +129,9 @@
         </ol>
       </article>
 
-      <article class="tarjeta">
+      <article class="tarjeta tarjeta-guia" data-contexto="individual familiar">
+        <span class="etiqueta-contexto">Individual y familiar</span>
+        <button type="button" class="boton-mini secundario btn-leer-tarjeta" style="float:right; padding:.25rem .6rem; font-size:.8rem;" aria-label="Escuchar paso 4">🔊 Oír</button>
         <h3>4. Reutilización e Innovación</h3>
         <ol class="lista-pasos">
           <li>Instala sistemas o recipientes para recolectar agua de lluvia.</li>
@@ -120,5 +156,6 @@
     <p>© 2026 WaterStats · <a href="FUENTES.txt">Créditos de recursos</a></p>
   </div>
 </footer>
+  <script src="js/asistente.js" defer></script>
 </body>
 </html>

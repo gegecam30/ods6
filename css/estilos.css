@@ -3,15 +3,14 @@
   box-sizing: border-box;
 }
 
-
-
-/* PASO 2. Estilos generales que heredan los textos. */
+/* PASO 2. Jerarquía tipográfica formal, clásica y legible (Inter + Merriweather). */
 body {
   margin: 0;
-  font-family: Minecraft, Minecraft;
-  color: #2f3196;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e245c;
   background: #85D3FC;
   line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -490,19 +489,19 @@ input[type="checkbox"] {
 
 .postal figcaption {
   padding: .6rem .5rem .2rem;
-  font-family: Georgia, serif;
+  font-family: 'Merriweather', Georgia, serif;
   font-style: italic;
 }
 
 .hero h1 {
-  font-family: Georgia, serif;
+  font-family: 'Merriweather', Georgia, serif;
   font-weight: normal;
   font-size: clamp(2.2rem, 4.6vw, 3.8rem);
   letter-spacing: -.035em;
 }
 
 h2 {
-  font-family: Georgia, serif;
+  font-family: 'Merriweather', Georgia, serif;
   font-weight: normal;
 }
 
@@ -512,7 +511,7 @@ h2 {
 }
 
 blockquote {
-  font-family: Georgia, serif;
+  font-family: 'Merriweather', Georgia, serif;
   font-style: italic;
   max-width: 780px;
 }
@@ -531,7 +530,9 @@ textarea {
   }
 
   .marca img {
-    width: 30px;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
   }
 }
 /* ================== HERO ================== */
@@ -693,4 +694,316 @@ textarea {
   .boton { width: 100%; text-align: center; }
   .hero .boton { width: auto; }
   .formulario .boton { width: 100%; }
+}
+
+/* ================== MEJORAS UX/UI & HUMAN-AI INTERACTION ================== */
+.nav-contacto {
+  background: #e3f4fd;
+  border-radius: .4rem;
+  font-weight: 600;
+}
+
+.canales-directos {
+  background: #f4fbff;
+  border-left: 4px solid #1683ad;
+  padding: .9rem 1.1rem;
+  border-radius: .4rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.canales-directos p {
+  margin: .35rem 0;
+  font-size: .95rem;
+}
+
+.asistente-ia-caja {
+  background: #f8fbff;
+  border: 1px solid #9fd2f0;
+  border-radius: .7rem;
+  padding: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.ia-cabecera {
+  margin-bottom: .5rem;
+}
+
+.ia-cabecera h3 {
+  margin: .4rem 0 .2rem;
+  font-size: 1.08rem;
+}
+
+.ia-badge {
+  display: inline-block;
+  background: #2f3196;
+  color: #ffffff;
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .2rem .65rem;
+  border-radius: 1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.ia-controles-entrada {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .8rem;
+}
+
+.ia-controles-entrada input[type="text"] {
+  flex: 1 1 220px;
+}
+
+.boton-secundario {
+  padding: .75rem 1rem;
+  background: #ffffff;
+  color: #2f3196;
+  border: 1px solid #2f3196;
+  border-radius: .45rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-secundario:hover {
+  background: #e3f4fd;
+}
+
+.ia-resultado {
+  margin-top: .9rem;
+  padding: .9rem;
+  background: #ffffff;
+  border: 1px solid #b9dff5;
+  border-radius: .5rem;
+}
+
+.ia-resultado p {
+  margin: 0 0 .5rem;
+  font-size: .95rem;
+}
+
+.ia-criterio {
+  font-size: .85rem !important;
+  color: #4a5568;
+  font-style: italic;
+}
+
+.ia-acciones,
+.ia-filtros-guia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .7rem;
+}
+
+.boton-mini {
+  padding: .45rem .85rem;
+  background: #5414a8;
+  color: #ffffff;
+  border: 1px solid #5414a8;
+  border-radius: .4rem;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-mini.secundario {
+  background: #ffffff;
+  color: #2f3196;
+  border-color: #2f3196;
+}
+
+.boton-mini.activo {
+  background: #2f3196;
+  border-color: #2f3196;
+}
+
+.etiqueta-contexto {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 600;
+  color: #1683ad;
+  background: #e3f4fd;
+  padding: .15rem .55rem;
+  border-radius: .35rem;
+  margin-bottom: .4rem;
+}
+
+/* ================== ACCESIBILIDAD ADAPTATIVA (FILA 1) ================== */
+.barra-accesibilidad {
+  background: #1e245c;
+  color: #ffffff;
+  padding: .45rem 0;
+  font-size: .88rem;
+}
+
+.a11y-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+}
+
+.a11y-titulo {
+  font-weight: 600;
+  margin-right: .4rem;
+}
+
+.boton-a11y {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, .55);
+  border-radius: .35rem;
+  padding: .25rem .65rem;
+  font: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+}
+
+.boton-a11y.activo,
+.boton-a11y:hover {
+  background: #ffffff;
+  color: #1e245c;
+  font-weight: 600;
+}
+
+/* Modo texto grande */
+html.texto-grande {
+  font-size: 115%;
+}
+
+/* Modo alto contraste — Regla 60-30-10 temático hídrico (WCAG AAA)
+   60% Dominante: Azul Abisal Profundo (#061121)
+   30% Secundario: Azul Marino Pizarra (#0D223D)
+   10% Acento: Cian Luminoso Agua (#38BDF8) + Texto Blanco Puro (#F8FAFC) */
+body.alto-contraste {
+  background: #061121 !important;
+  color: #f8fafc !important;
+}
+
+body.alto-contraste .barra-accesibilidad {
+  background: #030912 !important;
+  border-bottom: 1px solid #1e3a5f !important;
+}
+
+body.alto-contraste .cabecera,
+body.alto-contraste .fondo,
+body.alto-contraste .pie {
+  background: #09182d !important;
+  color: #f8fafc !important;
+  border-color: #1e3a5f !important;
+}
+
+body.alto-contraste .tarjeta,
+body.alto-contraste .asistente-ia-caja,
+body.alto-contraste .ia-resultado,
+body.alto-contraste .formulario,
+body.alto-contraste .canales-directos,
+body.alto-contraste .postal,
+body.alto-contraste .submenu {
+  background: #0d223d !important;
+  color: #f8fafc !important;
+  border: 1.5px solid #38bdf8 !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.alto-contraste .postal {
+  box-shadow: 6px 8px 0 #164e63 !important;
+}
+
+body.alto-contraste .tarjeta.destacada {
+  border-left: 5px solid #38bdf8 !important;
+}
+
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste p,
+body.alto-contraste li,
+body.alto-contraste label,
+body.alto-contraste summary,
+body.alto-contraste .marca {
+  color: #f8fafc !important;
+}
+
+body.alto-contraste a,
+body.alto-contraste .etiqueta,
+body.alto-contraste .numero,
+body.alto-contraste .etiqueta-contexto {
+  color: #38bdf8 !important;
+}
+
+body.alto-contraste .etiqueta-contexto,
+body.alto-contraste .nav-contacto {
+  background: #102e52 !important;
+}
+
+body.alto-contraste .ia-criterio {
+  color: #bae6fd !important;
+}
+
+body.alto-contraste input[type="text"],
+body.alto-contraste input[type="email"],
+body.alto-contraste select,
+body.alto-contraste textarea {
+  background: #061121 !important;
+  color: #f8fafc !important;
+  border: 1.5px solid #38bdf8 !important;
+}
+
+body.alto-contraste .boton,
+body.alto-contraste .boton-mini,
+body.alto-contraste .ia-badge {
+  background: #38bdf8 !important;
+  color: #04101f !important;
+  border-color: #38bdf8 !important;
+  font-weight: 700 !important;
+}
+
+body.alto-contraste .boton:hover,
+body.alto-contraste .boton-mini:hover {
+  background: #7dd3fc !important;
+}
+
+body.alto-contraste .boton-secundario,
+body.alto-contraste .boton-mini.secundario {
+  background: #061121 !important;
+  color: #38bdf8 !important;
+  border: 1.5px solid #38bdf8 !important;
+}
+
+/* ================== ESTRELLAS FEEDBACK NATIVO (FILA 5) ================== */
+.estrellas-grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: .7rem 0;
+}
+
+.estrella-btn {
+  background: #ffffff;
+  color: #2f3196;
+  border: 1px solid #9fd2f0;
+  border-radius: .4rem;
+  padding: .45rem .85rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.estrella-btn.seleccionada,
+.estrella-btn:hover {
+  background: #f59e0b;
+  color: #ffffff;
+  border-color: #d97706;
+}
+
+.marca img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
